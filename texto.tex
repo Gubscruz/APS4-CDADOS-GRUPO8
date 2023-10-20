@@ -1,0 +1,101 @@
+\documentclass{article}
+
+\usepackage[top=1in, bottom=1.5in, left=1.2in, right=1.2in]{geometry}
+\usepackage{graphicx}
+\usepackage{afterpage}
+\usepackage{amsmath}
+
+
+\title{\textbf{
+    Análise do número de vendas de imóveis na Inglaterra antes e durante a Grande Recessão
+    de 2008 usando o modelo de distribuição de Poisson}}
+\author{Grupo 8 - Gustavo Barroso Souza Cruz, Ian Cordibello Desponds}
+\date{\today}
+
+
+\begin{document}
+    \maketitle
+    \section*{Contexto Histórico}
+    
+      A Grande Recessão ou crise de 2008 foi uma das maiores crises econômicas dos últimos anos. Tendo inicio nos Estados Unidos,
+    a crise começou da seguinte maneira: O crescente interesse por rendimentos de hipotecas (forma de financiamento imobiliário
+    em que o imóvel é dado como garantia de pagamento ao banco) deu origem a uma grande estrutura financeira para negociar esses
+    empréstimos. A alta demanda incentivou os bancos a fazerem esses empréstimos para "subprimes" (pessoas com pouca estabilidade
+    financeira, com alta chances de dar "calote" no banco). Quando uma grande quantidade de indivíduos deixou de pagar suas dívidas,
+    o mercado imobiliário foi inundado por imóveis desvalorizados, o que levou ao colapso da estrutura financeira, levando à crise.
+    A crise se alastrou para outros países, eventualmente abalando toda a economia global.\\
+    
+
+    \section*{A análise}\
+    
+    \subsection*{Considerações}
+
+    É válido ressaltar que as seguintes considerações foram feitas para a realização da análise:
+
+    - As compras de imóveis são eventos independentes
+
+    - A crise durou de 2008 até 2012\\
+
+
+    \subsection*{Metodologia}
+
+    Tendo em vista que toda a economia global foi afetada pela crise e, portanto, o poder de compra da população diminiu,
+    estamos avaliando se o número médio de compras diárias de imóveis na Inglaterra foi afetado significativamente com a 
+    Recessão (esperamos que tenham menos compras durante a crise já que a população não tem dinheiro). Para isso, estamos 
+    usando um dataset com o histórico de vendas de imóveis na Inglaterra de 1995 até 2022.
+    
+    Separando os dados em dois grupos, um com os dados de 1995 até 2007 e 2013 até 2022 (anos estáveis) e outro com os dados de 2008
+    a 2012 (anos de crise). Com isso, calculamos a média diária de compras de imóveis nos anos em que a economia estava estável e a 
+    média diária de compras durante os anos da crise. 
+    
+    Para a análise, nós usamos o \textbf{modelo de Poisson}. A média de ocorrências do nosso evento (compra de imóveis) em um determinado
+    período de tempo (1 dia) - $\lambda$ - é a media de compras enquanto a economia estava estável. Como queremos analisar a probalilidade
+    de acontecer eventos tão ou mais extremos que o número medio de compras que observamos durante a crise - k - e esperamos que esse
+    número médio seja menor que quando a economia estava estável, precisamos calcular a probabilidade de observarmos uma média menor ou 
+    igual a da crise.
+
+    Esse cálculo é feito usando a CDF (cumulative distribution function) do modelo de Poisson, onde:
+
+    - \textbf{$\lambda$} é o número médio de compras diárias enquanto a economia está estável
+
+    - \textbf{$\mathbf{K}$} é o número médio de compras diárias durante o período de crise econômica\\
+
+
+    \subsection*{Teste de Hipóteses}
+
+    Nossa \textbf{hipótese nula} é de que as diferença entre as medias de comra fora e durante a crise não é estatisticamente significativa.
+    Nossa \textbf{hipótese alternativa} é de que a média durante a crise foi significativamente menor que fora da crise.
+
+    Para testar isso, definimos que o nosso \textbf{nível de significância} ($\alpha$) como 0.05 (5\%) e vamos comparar com o \textbf{p-valor}
+    encontrado.\\
+
+
+    \subsection*{Resultado}
+    
+    Encontramos que a probabilidade de observamos um evento tão ou mais extremo que o nosso (p-valor) foi de, aproximadamente
+     $6.4\times 10^{-6}$. 
+    Portanto, já que o p-valor encontrado é menor que o $\alpha$, conseguimos rejeitar a hipótese nula. Assim, podemos dizer
+    que, com os dados que temos, não podemos afirmar que a diferença entre as medias não é estatisticamente significante.
+    
+    Apesar de não ser possivel dar uma resposta definitiva, o fato da probabilidade ter sido tão baixa é um bom indicador de que,
+    de fato, houve uma redução significante no número de compras de imóveis na Inglaterra durante o período de crise econômica.\\
+
+
+    \section*{Autoavaliação - Conceito A}
+
+    Nós acreditamos que merecemos o conceito A pois, seguindo a rubrica do trabalho, explicamos no texto
+    quais eventos assumimos serem independentes entre si, explicamos que esperávamos obsevar uma diferença
+    do comportamento do fenômeno na situações com e sem crise, usamos o modelo correto para analisar a 
+    situação e enfatizamos que não pode ser tirada nenhuma conclusão definitiva, apesar de existirem
+    indicadores de que o comportamento estava de acordo com o que esperávamos (mantendo a análise crítica
+    e cientifica da situação). Não utilizamos nenhuma IA generativa para o texto.\\
+
+
+    \section*{Referências}
+
+    [1] UK Property Price data 1995-2023-04 : https://www.kaggle.com/datasets/willianoliveiragibin/uk-property-price-data-1995-2023-04/data
+
+    \noindent[2] Crise financeira de 2008: você sabe o que aconteceu? : https://www.politize.com.br/crise-financeira-de-2008/
+
+
+\end{document}
